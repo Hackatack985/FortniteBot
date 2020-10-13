@@ -122,8 +122,8 @@ client = commands.Bot(
     auth=fortnitepy.AdvancedAuth(
         email=data['email'],
         password=data['password'],
-        prompt_authorization_code=True,
-        delete_existing_device_auths=True,
+        prompt_authorization_code=False,
+        delete_existing_device_auths=False,
         **device_auth_details
     ),
     status=data['status'],
