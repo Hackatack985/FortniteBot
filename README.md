@@ -1,62 +1,62 @@
-# Xensis
+# twitch-spambot
 
-An expansive Fortnite lobby bot with a handful of features.
+### An automated twitch spammer
 
-> Discord server: <a href="https://discord.gg/88r2ShB" target="_blank">Xensis Bots</a>
+## Idea
 
-## Getting Started
+The idea of this small project is to process the messages from given channel
+and simply spam whichever phrase is currently the most popular.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+We can achieve this by constantly monitoring the chat with IRC from Twitch's
+Node.js library [tmi.js](https://github.com/tmijs).
 
-### Prerequisites
+We also fetch sub emotes from that channel to reject messages containing them,
+if we're not subbed.
 
-You will need Python 3.6 or higher for this bot to run.
+## How to run the program
 
-> <a href="https://www.python.org/downloads/release/python-360/" target="_blank">Python 3.6+</a>
+_Node.js_ is required, the program was created with _v14.4.0_.
 
+```bash
+npm install
 
-### Installing
+npm start <channelName>
 
-A step by step series of examples that tell you how to get the bot running.
+or
 
-Step 1.
+npm start <channelName> 3000 30000 5
+```
 
-> "Clone or Download" the repository
+The program has 4 available arguments:
 
+- channelName (required)
+- readInterval: default = 5000 _ms_
+- sleepInterval: default = 30000 _ms_
+- scoreThreshold: default = 4
 
-Step 2.
+The arguments are passed as:
 
-> Extract the files to your PC
+```bash
+npm start <channelName> <readInterval> <sleepInterval> <scoreThreshold>
+```
 
+If you wish to omit a particular argument, just pass a Javascript _falsy_ value,
+or an argument that is not a number.
+You can also just run:
 
-Step 3.
+```
+npm start <channelName>
+```
 
-> Run "Install Packages.bat" and wait for it to finish.
+to run the program with the default arguments.
+Adjust the arguments to match the desired channel's chat speed and activity.
 
-Step 4.
+_.env_ file is also required to provide data for the api and the config.
+Create an _.env_ file consiting of values as shown below:
 
-> Create a new epic games account for the bot.
+```bash
+TWITCH_USERNAME=<twitch_username>
+CLIENT_TOKEN=<client_token>
+```
 
-Step 5.
-
-> Open "config.json" and fill out the bot's information. (<a href="https://github.com/KaosDrip/Xensis/wiki/Config-Guide" target="_blank">Guide</a>)
-
-Step 6.
-
-> Run "START BOT.bat"
-
-
-Step 7.
-
-> Enjoy the bot! For a full list of commands, check out the <a href="https://github.com/KaosDrip/Xensis/wiki/Commands" target="_blank">Command Wiki</a>
-
-
-## Deployment
-
-If it prompts for an authorization code, get the code from <a href="https://github.com/KaosDrip/Xensis/wiki/Authorization-Code" target="_blank">here</a>
-
-If you have any other issues / questions, feel free to join our <a href="https://discord.gg/88r2ShB" target="_blank">Discord server</a> or check out the <a href="https://github.com/KaosDrip/Xensis/wiki/FAQ" target="_blank">FAQ</a>
-
-## Acknowledgments
-
-* <a href="https://fortnitepy.readthedocs.io/en/latest/intro.html" target="_blank">fortnitepy</a>
+Client token can be retrieved from https://twitchapps.com/tmi/.
